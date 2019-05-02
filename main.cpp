@@ -1,5 +1,5 @@
-#include "student.h"
-#include "reader.h"
+#include "student.hpp"
+#include "reader.hpp"
 
 int main()
 {
