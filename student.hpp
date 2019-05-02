@@ -15,7 +15,7 @@ private:
                                  //and 1 if they are available, 0 if not
 public:
   // Constructor for student
-  Student(std::string name, int vc, Instrument instrument, std::vector<int>);
+  Student(std::string name, int vc, Instrument instrument, std::vector<int> availability);
   std::string getName();
   int getVC();
   Instrument getInstrument();
