@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 //#include "csv.h"
+=======
+>>>>>>> 34d00d579e23ce8f500198dfffffdf39127f1812
 #include "parser.hpp"
 #include "reader.hpp"
 #include "student.hpp"
