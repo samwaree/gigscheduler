@@ -7,17 +7,16 @@
 #include <vector>
 #include <iostream>
 
-<<<<<<< HEAD
-static std::vector<Student> getStudentList(std::string fileName, std::vector<std::string> gigList) {
-    std::vector<Student> studentList; //Create student vector
-    
 
-=======
-std::vector<Student> Reader::getStudentList(std::string fileName, std::vector<std::string> gigList)
+std::vector<Student> Reader::getStudentList(std::string gigFileName, std::string vcFileName, std::vector<std::string> gigList)
 {
     std::vector<Student> vect;
+    std::ifstream gigStream(gigFileName);
+    aria::csv::CsvParser gigParser(gigStream);
+
+
+
     return vect;
->>>>>>> a084129ec4a51873d15800dfd1093731f5d137d8
 }
 
 std::vector<std::string> Reader::getGigList(std::string fileName)
