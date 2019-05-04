@@ -6,10 +6,16 @@
 #include <vector>
 #include <iostream>
 
-static std::vector<Student> getStudentList(std::string fileName, std::vector<std::string> gigList) {
-    std::vector<Student> studentList; //Create student vector
-    
 
+std::vector<Student> Reader::getStudentList(std::string gigFileName, std::string vcFileName, std::vector<std::string> gigList)
+{
+    std::vector<Student> vect;
+    std::ifstream gigStream(gigFileName);
+    aria::csv::CsvParser gigParser(gigStream);
+
+
+
+    return vect;
 }
 
 std::vector<std::string> Reader::getGigList(std::string fileName)
