@@ -27,7 +27,7 @@ int main()
 
     // Call getGigList and getStudentList
     gigList = Reader::getGigList(gigSurvey);
-    students = Reader::getStudentList(gigSurvey, vc, gigList);
+    students = Reader::getStudentList(gigSurvey, vc);
 
     // Prompt to choose gig
     int choice;
