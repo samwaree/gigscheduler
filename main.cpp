@@ -18,7 +18,7 @@ int main()
 
     // Call getGigList and getStudentList
     gigList = Reader::getGigList(gigSurvey);
-    students = Reader::getStudentList(gigSurvey, gigList);
+    students = Reader::getStudentList(gigSurvey, vc, gigList);
 
     // Prompt to choose gig
     int choice;
@@ -29,7 +29,8 @@ int main()
     }
     std::cin >> choice;
     std::cout  << gigList.at(choice);
-    // Prompt for instrumentation, either default file or give specific numbers
+
+    // Prompt for instrumentation manually in command line
     // Do some magic to get gig list
     // Print gig list and save to file
 }
