@@ -29,3 +29,8 @@ bool Student::isAvailable(int index)
 {
     return this->availability[index];
 }
+
+bool operator<(Student &s1, Student &s2)
+{
+    return s1.getVC() > s2.getVC();
+}

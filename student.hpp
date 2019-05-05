@@ -22,4 +22,6 @@ public:
   bool isAvailable(int index);
 };
 
+// Overloaded < operator to use in sorting algorithm in main
+bool operator<(Student &s1, Student &s2);
 #endif
