@@ -18,6 +18,7 @@ public:
   Student(std::string name, int vc, Instrument instrument, std::vector<int> availability);
   std::string getName();
   int getVC();
+  void setVC(int vc);
   Instrument getInstrument();
   bool isAvailable(int index);
 };

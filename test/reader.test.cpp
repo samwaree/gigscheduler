@@ -17,6 +17,7 @@ int main()
     auto vect1 = Reader::getStudentList(fileName, "VC-Credit.csv");
     for (auto itr = vect1.begin(); itr != vect1.end(); itr++) {
         std::cout << itr -> getName() << " : ";
+        std::cout << itr -> getVC() << " : ";
         std::cout << itr -> getInstrument() << " : ";
         for (int i = 0; i < 4; i++) 
         {
