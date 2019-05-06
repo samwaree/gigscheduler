@@ -71,14 +71,6 @@ int main()
     // Step 3. Fill the gig list with the amount of students specified by the instrumentation
     std::map<Instrument, std::vector<Student>> instruments;
     std::map<Instrument, std::vector<std::string>> finalList;
-    Student saylix = Student("Saylix", 6, OTHER, {});
-    Student knox = Student("KNox", 8, DRUMS, {});
-    Student olli = Student("Olli", 2, DRUMS, {});
-    Student rosie = Student("Rosie", 4, OTHER, {});
-    students.push_back(rosie);
-    students.push_back(olli);
-    students.push_back(knox);
-    students.push_back(saylix);
 
     // Step 1
     for (auto &student : students)
@@ -87,7 +79,10 @@ int main()
         {
             instruments.insert({student.getInstrument(), {}});
         }
-        instruments.find(student.getInstrument())->second.push_back(student);
+        if (student.isAvailable(choice))
+        {
+            instruments.find(student.getInstrument())->second.push_back(student);
+        }
     }
     // Steps 2 & 3
     for (std::map<Instrument, std::vector<Student>>::iterator it = instruments.begin(); it != instruments.end(); it++)

@@ -58,7 +58,7 @@ std::vector<Student> Reader::getStudentList(std::string gigFileName, std::string
     // Create a parser object from the gig survey results
     std::ifstream gigStream(gigFileName);
     aria::csv::CsvParser gigParser(gigStream);
-
+    
     // Loop through each row in the csv file
     int rowCount = 0;
     for (auto &row : gigParser)
@@ -80,6 +80,7 @@ std::vector<Student> Reader::getStudentList(std::string gigFileName, std::string
     // Close the file stream
     gigStream.close();
     
+
     // Loop through each student in the vector and update their VC
     for (Student &student : studentVector)
     {
@@ -87,6 +88,7 @@ std::vector<Student> Reader::getStudentList(std::string gigFileName, std::string
         std::ifstream vcStream(vcFileName);
         aria::csv::CsvParser vcParser(vcStream);
 
+        int rowCount1 = 0;
         // Find the row in the file that has a name matching the student's
         aria::csv::CsvParser::iterator rowItr = std::find_if(vcParser.begin(), vcParser.end(), [&](std::vector<std::string> const &row) -> bool {
             return row[0] == student.getName();
