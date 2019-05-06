@@ -103,6 +103,9 @@ std::vector<Student> Reader::getStudentList(
         aria::csv::CsvParser::iterator rowItr = std::find_if(
             vcParser.begin(), vcParser.end(), 
             [&](std::vector < std::string > const & row) -> bool {
+            if (row.size() == 0) {
+                return false;
+            }
             return row[0] == student.getName();
         });
 
