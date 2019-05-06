@@ -6,17 +6,19 @@
 #include <algorithm>
 
 // Helper method to return a user's input
-int getValue() {
+int getValue()
+{
     int input;
     std::cin >> input;
     return input;
 }
-int main() {
-    std::string gigSurvey; // User input path to gig survey file
-    std::string vc; // User input path to vc file
-    std::vector < std::string > gigList; // Vector of gigs to be scheduled
-    std::vector<Student> students; // Vector of available students
-    std::map<Instrument, int> instrumentation; 
+int main()
+{
+    std::string gigSurvey;            // User input path to gig survey file
+    std::string vc;                   // User input path to vc file
+    std::vector<std::string> gigList; // Vector of gigs to be scheduled
+    std::vector<Student> students;    // Vector of available students
+    std::map<Instrument, int> instrumentation;
     // Vector of the desired instrumentation
 
     // Initial welcome message and prompt for gig survey file and vc file
@@ -34,7 +36,8 @@ int main() {
     int choice;
     std::cout << "Select the gig you wish to schedule:" << std::endl;
     // indexed for loop so user can pick gig's index they want to schedule
-    for (int i = 0; i < gigList.size(); i ++) {
+    for (int i = 0; i < gigList.size(); i++)
+    {
         std::cout << i + 1 << ". " << gigList.at(i) << std::endl;
     }
     std::cin >> choice;
@@ -64,65 +67,76 @@ int main() {
 
     // Do some magic to get gig list
     // Algorithm is hardcoded here to have access to the user's choice
-    // Step 1. Fill map with vectors of instruments, 
-        // and place all available students in their instrument vectors
+    // Step 1. Fill map with vectors of instruments,
+    // and place all available students in their instrument vectors
     // Step 2. Sort each instrument vector by student's VC count, descending
-    // Step 3. Fill the gig list with the number of students 
-        // specified by the instrumentation
-    std::map <Instrument, std::vector<Student>> instruments; //student vec's
-    std::map <Instrument, std::vector <std::string>> finalListVec;
-        //Vectors of chosen students
+    // Step 3. Fill the gig list with the number of students
+    // specified by the instrumentation
+    std::map<Instrument, std::vector<Student>> instruments; //student vec's
+    std::map<Instrument, std::vector<std::string>> finalListVec;
+    //Vectors of chosen students
 
     // Step 1
-    for (auto & student : students) {
+    for (auto &student : students)
+    {
         //Create instrument vector if not in map
-        if (instruments.find(student.getInstrument()) == instruments.end()) {
+        if (instruments.find(student.getInstrument()) == instruments.end())
+        {
             instruments.insert({student.getInstrument(), {}});
         }
         //Add student to their appropriate instrument if they are available
-        if (student.isAvailable(choice)) {
+        if (student.isAvailable(choice))
+        {
             instruments.find(
-                student.getInstrument()) -> second.push_back(student);
+                           student.getInstrument())
+                ->second.push_back(student);
         }
     }
     // Steps 2 & 3
-    for (std::map <Instrument, std::vector<Student>>::iterator it = 
-        instruments.begin(); it != instruments.end(); it ++) {
-        Instrument instrument = it -> first; // Instrument for readability
+    for (std::map<Instrument, std::vector<Student>>::iterator it =
+             instruments.begin();
+         it != instruments.end(); it++)
+    {
+        Instrument instrument = it->first; // Instrument for readability
         // Step 2
-        std::sort(it -> second.begin(), it -> second.end()); // Sort by VC
+        std::sort(it->second.begin(), it->second.end()); // Sort by VC
         // Step 3
         // Create new vector of the current instrument to fill
         finalListVec.insert({instrument, {}});
-        for (int i = 0; i < it -> second.size(); i ++) {
-            if (i == instrumentation.find(instrument) -> second) {
+        for (int i = 0; i < it->second.size(); i++)
+        {
+            if (i == instrumentation.find(instrument)->second)
+            {
                 // Stop loop if we have reached our instrumentation limit
                 break;
             }
             // Place student into the final instrument vector
-            finalListVec.find(instrument) -> 
-                second.push_back(it -> second.at(i).getName());
+            finalListVec.find(instrument)->second.push_back(it->second.at(i).getName());
         }
     }
 
     // Print gig list
     std::cout << "Final Gig List:" << std::endl;
     // Indexed for loop to call the instruments in order of their enumeration
-    std::vector < std::string > finalList;
-    for (int i = 0; i < 9; i ++) {
+    std::vector<std::string> finalList;
+    for (int i = 0; i < 9; i++)
+    {
         // Variable declarations for readability
         Instrument instrument = static_cast<Instrument>(i);
-        std::vector < std::string > students = 
-            finalListVec.find(instrument) -> second;
-        int capacity = instrumentation.find(instrument) -> second;
+        std::vector<std::string> students =
+            finalListVec.find(instrument)->second;
+        int capacity = instrumentation.find(instrument)->second;
         // Place all available students in the Final List
-        for (auto & string : students) {
+        for (auto &string : students)
+        {
             finalList.push_back(string);
         }
         // If we have fewer available students than instrumentation asks for,
         // Add "need *instrument*" statements
-        if (students.size() < instrumentation.find(instrument) -> second) {
-            for (int j = 0; j < capacity - students.size(); j ++) {
+        if (students.size() < instrumentation.find(instrument)->second)
+        {
+            for (int j = 0; j < capacity - students.size(); j++)
+            {
                 finalList.push_back("Need " + textOfEnum(instrument));
             }
         }
@@ -130,7 +144,8 @@ int main() {
 
     //Print out the Final List and save to output file
     std::ofstream out("output.txt");
-    for (auto & string : finalList) {
+    for (auto &string : finalList)
+    {
         out << string << std::endl;
         std::cout << string << std::endl;
     }
