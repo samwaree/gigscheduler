@@ -1,10 +1,8 @@
-#include "..\student.hpp"
-#include "..\instruments.hpp"
-#include <iostream>
-#include <assert.h>
-
-int main()
-{
+#include "..\student.hpp" 
+#include "..\instruments.hpp" 
+#include <iostream> 
+#include <assert.h> 
+int main() {
     std::string name = "Test";
     Instrument instrument = DRUMS;
     int vc = 10;
